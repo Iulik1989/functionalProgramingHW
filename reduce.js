@@ -1,7 +1,7 @@
 // map, filter, every, some, find, indexOf
 
 
-Array.prototype.costumeMap = (callback) => {
+function costumeMap(callback) {
     const arr = this;
     const result = [];
 
@@ -12,7 +12,9 @@ Array.prototype.costumeMap = (callback) => {
     return result;
 }
 
-Array.prototype.costumeFilter = (callback) => {
+Array.prototype.costumeMap = costumeMap;
+
+function costumeFilter(callback) {
     const arr = this;
     const result = [];
 
@@ -25,7 +27,9 @@ Array.prototype.costumeFilter = (callback) => {
     return result;
 }
 
-Array.prototype.costumeEvery = (callback) => {
+Array.prototype.costumeFilter = costumeFilter;
+
+function costumeEvery(callback) {
     const arr = this;
     let result = true;
     let defaultResult = true;
@@ -39,7 +43,9 @@ Array.prototype.costumeEvery = (callback) => {
     return (result && defaultResult);
 }
 
-Array.prototype.costumeSome = (callback) => {
+Array.prototype.costumeEvery = costumeEvery;
+
+function costumeSome(callback) {
     const arr = this;
     let result = false;
     let defaultResult = true;
@@ -53,29 +59,36 @@ Array.prototype.costumeSome = (callback) => {
     return (result && defaultResult);
 }
 
-Array.prototype.costumeFind = (callback) => {
-    const arr = this;
-    let result = [];
+Array.prototype.costumeSome = costumeSome;
 
-    this.reduce((acc, cur) => {
-        if (callback(cur)) {
+function costumeFind(callback){
+    const arr = this;
+    let result=[];
+
+    this.reduce((acc,cur)=>{
+        if(callback(cur)){
             result.push(cur);
         }
 
-    }, arr[0])
+    },arr[0])
 
     return result[0];
 }
 
-Array.prototype.costumeIndexOf = (callback) => {
-    const arr = this;
-    let result = [];
+Array.prototype.costumeFind = costumeFind;
 
-    this.reduce((acc, cur, index) => {
-        if (callback(cur)) {
+function costumeIndexOf(callback){
+    const arr = this;
+    let result=[];
+
+    this.reduce((acc, cur, index)=>{
+        if(callback(cur)){
             result.push(index)
         }
-    }, arr[0])
+    },arr[0])
 
     return result[0];
 }
+
+Array.prototype.costumeIndexOf = costumeIndexOf;
+
