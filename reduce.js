@@ -1,7 +1,7 @@
 // map, filter, every, some, find, indexOf
 
 
-function costumeMap(callback) {
+Array.prototype.costumeMap = (callback) => {
     const arr = this;
     const result = [];
 
@@ -12,10 +12,7 @@ function costumeMap(callback) {
     return result;
 }
 
-Array.prototype.costumeMap = costumeMap;
-
-
-function costumeFilter(callback) {
+Array.prototype.costumeFilter = (callback) => {
     const arr = this;
     const result = [];
 
@@ -28,9 +25,7 @@ function costumeFilter(callback) {
     return result;
 }
 
-Array.prototype.costumeFilter = costumeFilter;
-
-function costumeEvery(callback) {
+Array.prototype.costumeEvery = (callback) => {
     const arr = this;
     let result = true;
     let defaultResult = true;
@@ -44,9 +39,7 @@ function costumeEvery(callback) {
     return (result && defaultResult);
 }
 
-Array.prototype.costumeEvery = costumeEvery;
-
-function costumeSome(callback) {
+Array.prototype.costumeSome = (callback) => {
     const arr = this;
     let result = false;
     let defaultResult = true;
@@ -60,40 +53,29 @@ function costumeSome(callback) {
     return (result && defaultResult);
 }
 
-Array.prototype.costumeSome = costumeSome;
-
-function costumeFind(callback){
+Array.prototype.costumeFind = (callback) => {
     const arr = this;
-    let result=[];
+    let result = [];
 
-    this.reduce((acc,cur)=>{
-        if(callback(cur)){
+    this.reduce((acc, cur) => {
+        if (callback(cur)) {
             result.push(cur);
         }
 
-    },arr[0])
+    }, arr[0])
 
     return result[0];
 }
 
-Array.prototype.costumeFind = costumeFind;
-
-function costumeIndexOf(callback){
+Array.prototype.costumeIndexOf = (callback) => {
     const arr = this;
-    let result=[];
+    let result = [];
 
-    this.reduce((acc, cur, index)=>{
-        if(callback(cur)){
+    this.reduce((acc, cur, index) => {
+        if (callback(cur)) {
             result.push(index)
         }
-    },arr[0])
+    }, arr[0])
 
     return result[0];
 }
-
-Array.prototype.costumeIndexOf = costumeIndexOf;
-
-
-
-
-
